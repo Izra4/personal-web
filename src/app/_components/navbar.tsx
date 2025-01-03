@@ -30,15 +30,15 @@ const Navbar = () => {
   return (
     <nav className={`${poppins.className} bg-white flex items-center justify-between shadow-md relative font-semibold`}>
       {/* Logo */}
-      <div className="flex items-center ml-8 p-2">
+      <div className="flex items-center ml-12 p-2">
         <Link href="/">
           <Image src="/logo.svg" alt="logo" width={45} height={45} />
         </Link>
       </div>
 
       {/* Menu */}
-      <ul className="absolute left-1/2 transform -translate-x-1/2 flex space-x-8 text-primary_text">
-        <NavLink href="/">Home</NavLink>
+      <ul className="absolute left-1/2 transform -translate-x-1/2 flex space-x-16 text-primary_text">
+        <NavLink href="/home">Home</NavLink>
         <NavLink href="/experience">Experience</NavLink>
         <NavLink href="/roast">Roast Me</NavLink>
         <NavLink href="/about">About Me</NavLink>
