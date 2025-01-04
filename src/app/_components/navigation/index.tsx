@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white flex items-center justify-between shadow-md relative font-semibold">
       {/* Logo */}
-      <div className="flex items-center ml-12 p-2">
+      <div className="ml-8 p-2 md:flex items-center md:ml-12">
         <Link href="/">
           <Image src="/logo.svg" alt="logo" width={45} height={45} />
         </Link>
