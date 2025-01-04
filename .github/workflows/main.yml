@@ -1,0 +1,25 @@
+name: Local Docker Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: docker build -t personal-web .
+
+      - name: Stop and Remove Existing Container
+        run: |
+          docker stop personal-web || true
+          docker rm personal-web || true
+
+      - name: Run Docker Container
+        run: docker run -d -p 3000:3000 --name personal-web personal-web
