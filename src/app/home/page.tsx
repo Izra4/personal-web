@@ -1,9 +1,8 @@
 import React from 'react';
-import Navbar from '../_components/navbar';
+import Navbar from '../_components/navigation/index';
 import { Poppins, Lexend } from 'next/font/google';
 import Image from 'next/image';
 
-// Import font
 const poppins = Poppins({
   weight: [
     '100', '200', '300', '400',
@@ -21,11 +20,11 @@ const lexend = Lexend({
 
 const Heading = () => {
   return (
-    <div className="flex flex-col -space-y-6">
-      <p className={`${lexend.className} text-primary_text font-medium text-[75px]`}>
+    <div className="flex flex-col -space-y-4 lg:-space-y-6">
+      <p className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`}>
         Hello, I&apos;am
       </p>
-      <p className={`${lexend.className} text-secondary_text font-medium text-[75px]`}>
+      <p className={`${lexend.className} text-secondary_text font-medium text-[50px] lg:text-[75px]`}>
         Izra
       </p>
     </div>
@@ -44,21 +43,39 @@ const Description = () => {
   );
 };
 
-// Halaman Utama
 const DashboardPage = () => {
   return (
-    <div className="bg-primary w-screen h-screen flex flex-col">
+    <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
       <Navbar />
-      <div className="w-full h-full flex flex-row">
-        <div className="flex flex-col max-w-3xl px-20 pt-16">
-          <Heading />
+      {/* Desktop */}
+      <div className='hidden lg:flex w-full h-screen'>
+        <div className="flex flex-row w-full h-full">
+          <div className="flex flex-col max-w-3xl 2xl:max-w-5xl px-20 pt-16">
+            <div className='2xl:mt-36'>
+              <Heading />
 
-          <Description />
-        </div>
-        <div className='pt-14 pl-8'>
-          <Image src="/me.svg" alt="profile" width={400} height={400} />
+              <Description />
+            </div>
+          </div>
+          <div className='w-full h-full flex justify-center items-center'>
+            <Image src="/me.svg" alt="profile" width={400} height={400} className="2xl:w-3/5"/>
+          </div>
         </div>
       </div>
+
+      {/* Mobile */}
+      <div className='lg:hidden flex justify-center items-center'>
+        <div className="flex flex-col max-w-3xl 2xl:max-w-5xl px-10 pt-4">
+          <Heading />
+
+          <div className=' w-full flex justify-center items-center'>
+            <Image src="/me.svg" alt="profile" width={400} height={400} className=""/>
+          </div>
+              
+          <Description />
+        </div>
+      </div>
+
     </div>
   );
 };
