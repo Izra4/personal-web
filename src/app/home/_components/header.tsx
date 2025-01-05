@@ -10,31 +10,35 @@ const lexend = Lexend({
 });
 
 const Heading = () => {
-  const [isFirstFinished, setIsFirstFinished] = useState(false);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isTypingFinished, setIsTypingFinished] = useState(false);
+  const [isRemovingFinished, setIsRemovingFinished] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const texts = ["Izra", "Backend Developer", "InfraTech Enthusiast", "Weebs", "Kidding"];
+  const texts = [
+    "Izra", 
+    "Backend Dev",
+    "Infra Enthusiast",
+    "Single",
+    "Weebs (kidding)"
+  ];
 
-  const handleFirstFinished = () => {
-    setIsFirstFinished(true);
+  const handleTypingFinished = () => {
+    setIsTypingFinished(true);
   };
 
-  // Cycle through next texts every 3 seconds
-  useEffect(() => {
-    if (isFirstFinished) {
-      const intervalId = setInterval(() => {
-        setCurrentTextIndex((prevIndex) => {
-          // If we reach the end of the texts array, reset back to 0
-          if (prevIndex + 1 === texts.length) {
-            return 0; // Reset to "Izra"
-          }
-          return prevIndex + 1; // Move to the next text
-        });
-      }, 3000); // 3 seconds interval
+  const handleRemovingFinished = () => {
+    setIsRemovingFinished(true);
+  };
 
-      return () => clearInterval(intervalId); // Clean up the interval when done
+  useEffect(() => {
+    if (isTypingFinished && isRemovingFinished) {
+      setTimeout(() => {
+        setIsTypingFinished(false);
+        setIsRemovingFinished(false);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+      }, 1000);
     }
-  }, [isFirstFinished, currentTextIndex, texts.length]);
+  }, [isTypingFinished, isRemovingFinished, texts.length]);
 
   return (
     <div className="flex flex-col -space-y-4 lg:-space-y-6">
@@ -42,19 +46,20 @@ const Heading = () => {
         text="Hello, I'm" 
         speed={100} 
         className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`} 
-        onFinished={handleFirstFinished}
+        onFinished={handleTypingFinished}
       />
       
-      {isFirstFinished && (
-        <>
+      <div className="min-h-[120px]">
+        {isTypingFinished && !isRemovingFinished && (
           <TypeWriterRemove 
-            text={"Test Remove"} 
+            text={texts[currentIndex]} 
             speed={100} 
             removeSpeed={100} 
-            className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`}
-            onFinished={}/>
-        </>
-      )}
+            className={`${lexend.className} text-secondary_text font-medium text-[50px] lg:text-[75px] leading-none lg:leading-normal`} 
+            onFinished={handleRemovingFinished}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@ export default {
     extend: {
       animation: {
         'fade-in': 'fadeIn 1s ease-in forwards',
+        'fade-in-delay': 'fadeIn 3s ease-in forwards'
       },
       keyframes: {
         fadeIn: {
