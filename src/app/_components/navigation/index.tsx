@@ -1,4 +1,3 @@
-// components/Navbar.tsx
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
