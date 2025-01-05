@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { Lexend } from 'next/font/google';
-import { TypeWriter } from '@/app/_components/type-writer';
+import { TypeWriter } from '@/app/_components/type-writer/add';
+import { TypeWriterRemove } from "@/app/_components/type-writer/remove";
 
 const lexend = Lexend({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -9,27 +10,51 @@ const lexend = Lexend({
 });
 
 const Heading = () => {
-  const [isTypeWriterDone, setIsTypeWriterDone] = useState(false);
+  const [isFirstFinished, setIsFirstFinished] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
+  const texts = ["Izra", "Backend Developer", "InfraTech Enthusiast", "Weebs", "Kidding"];
+
+  const handleFirstFinished = () => {
+    setIsFirstFinished(true);
+  };
+
+  // Cycle through next texts every 3 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTypeWriterDone(true);
-    }, 1200);
+    if (isFirstFinished) {
+      const intervalId = setInterval(() => {
+        setCurrentTextIndex((prevIndex) => {
+          // If we reach the end of the texts array, reset back to 0
+          if (prevIndex + 1 === texts.length) {
+            return 0; // Reset to "Izra"
+          }
+          return prevIndex + 1; // Move to the next text
+        });
+      }, 3000); // 3 seconds interval
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearInterval(intervalId); // Clean up the interval when done
+    }
+  }, [isFirstFinished, currentTextIndex, texts.length]);
 
   return (
     <div className="flex flex-col -space-y-4 lg:-space-y-6">
-      <TypeWriter text="Heello, I'm" speed={100} className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`} />
+      <TypeWriter 
+        text="Hello, I'm" 
+        speed={100} 
+        className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`} 
+        onFinished={handleFirstFinished}
+      />
       
-      <p
-        className={`${lexend.className} text-secondary_text font-medium text-[50px] lg:text-[75px] transition-opacity ease-in duration-300 ${
-          isTypeWriterDone ? 'opacity-100 animate-fade-in' : 'opacity-0'
-        }`}
-      >
-        Izra
-      </p>
+      {isFirstFinished && (
+        <>
+          <TypeWriterRemove 
+            text={"Test Remove"} 
+            speed={100} 
+            removeSpeed={100} 
+            className={`${lexend.className} text-primary_text font-medium text-[50px] lg:text-[75px]`}
+            onFinished={}/>
+        </>
+      )}
     </div>
   );
 };

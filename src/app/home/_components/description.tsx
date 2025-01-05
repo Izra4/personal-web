@@ -30,7 +30,7 @@ const Description = () => {
       congue, justo ligula feugiat odio, vel malesuada odio nisi ac metus. Integer sagittis lectus
       et nisi vulputate, sit amet auctor felis tincidunt. Nulla facilisi. Sed vehicula orci at
       turpis hendrerit, a interdum purus pellentesque. Aliquam erat volutpat. Sed pharetra nisl at
-      magna dictum, at fermentum tortor pharetra: THIS IS TEST FOR DEPLOYMENT
+      magna dictum, at fermentum tortor pharetra
     </p>
   );
 };
