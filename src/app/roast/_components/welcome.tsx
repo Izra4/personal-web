@@ -58,7 +58,7 @@ const WelcomeField: React.FC<WelcomeFieldProps> = ({
 
       {/* Mobile */}
       <div className="flex md:hidden">
-        <div className="w-full min-h-screen flex flex-col mt-8 items-center">
+        <div className="w-full h-fit flex flex-col mt-8 items-center">
           <div className="flex flex-col">
             <div className="w-full min-h-[110px] text-center">
               {!isRemovingFinished && (

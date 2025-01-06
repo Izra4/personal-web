@@ -66,6 +66,7 @@ const RoastPage = () => {
             isRemovingFinished={isRemovingFinished}
             handleRemovingFinished={handleRemovingFinished}
         />
+        <InputField poppins={poppins.className}/>
       </div>
     </div>
   );

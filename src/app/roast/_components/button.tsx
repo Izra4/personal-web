@@ -8,7 +8,7 @@ const SendButton = ({ onClick, poppins }: { onClick: MouseEventHandler<HTMLButto
       <button
         type="button"
         onClick={onClick}
-        className="group relative 2xl:h-12 2xl:w-48 lg:h-10 lg:w-1/2 overflow-hidden rounded-lg 
+        className="group relative 2xl:h-12 2xl:w-48 h-10 w-1/2 overflow-hidden rounded-lg 
           bg-primary text-lg shadow hover:scale-110 transform transition duration-200
           active:scale-y-75"
       >
