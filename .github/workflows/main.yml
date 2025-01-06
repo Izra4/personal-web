@@ -5,26 +5,33 @@ on:
     branches:
       - master
 
-
 jobs:
   deploy:
     runs-on: self-hosted
+
     steps:
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build Docker Image
+      # Stop and remove any existing containers using Docker Compose
+      - name: Stop and Remove Existing Containers
         run: |
-          docker rmi personal-web || true
-          docker build -t personal-web .
+          docker-compose down || true
 
-      - name: Stop and Remove Existing Container
-        run: |
-          docker stop personal-web || true
-          docker rm personal-web || true
-
-      - name: Run Docker Container
+      # Build and deploy using Docker Compose
+      - name: Build and Deploy Docker Containers
         env:
+          DATABASE_URL: ${{ secrets.DB_URL }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_NAME: ${{ secrets.DB_NAME }}
           PORT: ${{ secrets.PORT }}
-          PORT_FORWARD: ${{ secrets.PORT_FORWARD }}
-        run: docker run -d -p $PORT:$PORT_FORWARD --name personal-web personal-web
+        run: |
+          # Build containers
+          docker-compose build
+
+          # Bring up the containers
+          docker-compose up -d
+
+      # Optionally, run some tests or checks after deployment (e.g., health checks, etc.)
