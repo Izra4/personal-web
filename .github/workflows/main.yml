@@ -10,29 +10,24 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Stop and remove any existing containers using Docker Compose
+      - name: Set up environment variables
+        run: |
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+          echo "DB_PASS=${{ secrets.DB_PASS }}" >> .env
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+          echo "DB_URL=${{ secrets.DB_URL }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "PORT_FORWARD=${{ secrets.PORT_FORWARD }}" >> .env
+
       - name: Stop and Remove Existing Containers
         run: |
           docker-compose down || true
 
-      # Build and deploy using Docker Compose
       - name: Build and Deploy Docker Containers
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_PASS: ${{ secrets.DB_PASS }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          PORT: ${{ secrets.PORT }}
         run: |
-          # Build containers
           docker-compose build
-
-          # Bring up the containers
           docker-compose up -d
-
-      # Optionally, run some tests or checks after deployment (e.g., health checks, etc.)
