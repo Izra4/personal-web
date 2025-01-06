@@ -45,7 +45,7 @@ const RoastPage = () => {
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
       <Navbar />
-      <div className="flex flex-row w-full h-screen">
+      <div className="hidden md:flex flex-row w-full h-screen">
         <WelcomeField
           lexendClass={lexend.className}
           poppinsClass={poppins.className}
@@ -55,6 +55,17 @@ const RoastPage = () => {
           handleRemovingFinished={handleRemovingFinished}
         />
         <InputField poppins={poppins.className}/>
+      </div>
+
+      <div className="flex flex-col justify-start items-center w-full min-h-screen md:hidden">
+        <WelcomeField
+            lexendClass={lexend.className}
+            poppinsClass={poppins.className}
+            texts={texts}
+            currentIndex={currentIndex}
+            isRemovingFinished={isRemovingFinished}
+            handleRemovingFinished={handleRemovingFinished}
+        />
       </div>
     </div>
   );
