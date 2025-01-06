@@ -1,7 +1,19 @@
 "use client";
 import Input from "./input";
 
-const ReviewForm = ({poppins} : {poppins: string}) => {
+const ReviewForm = ({
+  poppins,
+  name,
+  setName,
+  review,
+  setReview,
+}: {
+  poppins: string;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  review: string;
+  setReview: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   return (
     <form className="flex flex-col w-full h-full text-primary_text font-medium text-md">
       <Input
@@ -11,6 +23,8 @@ const ReviewForm = ({poppins} : {poppins: string}) => {
         label="Name / Initials (optional)"
         placeholder="optional"
         isTextarea={false}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <Input
         poppinsClass={poppins}
@@ -19,6 +33,8 @@ const ReviewForm = ({poppins} : {poppins: string}) => {
         label="Your honest review"
         placeholder="Give me your best words"
         isTextarea={true}
+        value={review}
+        onChange={(e) => setReview(e.target.value)}
       />
     </form>
   );
