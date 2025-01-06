@@ -1,29 +1,24 @@
-# Menggunakan Node.js versi 20 berbasis Alpine untuk image yang ringan
 FROM node:20-alpine
 
-# Menetapkan direktori kerja di dalam container
 WORKDIR /app
 
-# Menyalin file package.json dan package-lock.json untuk menginstal dependensi terlebih dahulu
+# Copy package.json dan package-lock.json
 COPY package*.json ./
 
-# Menginstal semua dependensi yang dibutuhkan
+# Install dependencies
 RUN npm install
 
-# Menyalin seluruh kode aplikasi ke dalam container
+# Copy seluruh file proyek
 COPY . .
 
-# Menjalankan Prisma generate untuk membuat klien Prisma
+# Generate Prisma client
 RUN npx prisma generate
 
-# Menjalankan Prisma migrate deploy untuk menerapkan perubahan skema database di production
-RUN npx prisma migrate deploy
-
-# Membuat build aplikasi
+# Build aplikasi
 RUN npm run build
 
-# Mengekspos port yang digunakan oleh aplikasi
+# Ekspos port aplikasi
 EXPOSE 3000
 
-# Menjalankan aplikasi ketika container dijalankan
-CMD ["npm", "start"]
+# Jalankan migrasi Prisma dan aplikasi saat container berjalan
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]

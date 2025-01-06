@@ -10,7 +10,10 @@ services:
     environment:
       DB_URL: ${DB_URL}
     depends_on:
-      - mysql
+      - mysql:
+        condition: service_healthy
+    networks:
+      - personal    
 
   mysql:
     image: mysql:8.0
@@ -24,7 +27,12 @@ services:
       - mysql-data:/var/lib/mysql
     ports:
       - "${DB_PORT}:3306"
+    networks:
+      - personal
 
 volumes:
   mysql-data:
+
+networks:
+  personal:
 
