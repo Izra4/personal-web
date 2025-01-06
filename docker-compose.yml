@@ -29,6 +29,12 @@ services:
       - "${DB_PORT}:3306"
     networks:
       - personal
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u ${DB_USER} --password=${DB_PASS} || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
 volumes:
   mysql-data:
