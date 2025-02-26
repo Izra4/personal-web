@@ -9,13 +9,13 @@ export default {
   theme: {
     extend: {
       animation: {
-        'fade-in': 'fadeIn 1s ease-in forwards',
-        'fade-in-delay': 'fadeIn 3s ease-in forwards'
+        "fade-in": "fadeIn 1s ease-in forwards",
+        "fade-in-delay": "fadeIn 3s ease-in forwards",
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
       },
       colors: {
