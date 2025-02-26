@@ -15,6 +15,9 @@ const MenuDesktop = ({ closeMenu }: { closeMenu: () => void }) => {
       <NavLink href="/about" onClick={closeMenu}>
         About Me
       </NavLink>
+      <NavLink href="/shortener" onClick={closeMenu}>
+        URL Shortener
+      </NavLink>
     </ul>
   );
 };

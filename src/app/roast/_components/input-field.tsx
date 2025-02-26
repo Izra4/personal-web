@@ -11,14 +11,14 @@ const InputField = ({ poppins }: { poppins: string }) => {
 
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertSeverity, setAlertSeverity] = useState<'error' | 'success'>('error'); // For different alert types
+  const [alertSeverity, setAlertSeverity] = useState<"error" | "success">("error"); // For different alert types
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!review) {
       setAlertMessage("Your thoughts are mandatory!");
-      setAlertSeverity('error');
+      setAlertSeverity("error");
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 5000);
       return;
@@ -39,7 +39,7 @@ const InputField = ({ poppins }: { poppins: string }) => {
         setName("");
         setReview("");
         setAlertMessage("Thanks for the words! Hope you enjoy your day! 🙏");
-        setAlertSeverity('success');
+        setAlertSeverity("success");
         setShowAlert(true);
         setTimeout(() => setShowAlert(false), 7000);
       } else {
@@ -48,7 +48,7 @@ const InputField = ({ poppins }: { poppins: string }) => {
     } catch (error) {
       console.error(error);
       setAlertMessage("An error occurred. Please try again.");
-      setAlertSeverity('error');
+      setAlertSeverity("error");
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 5000);
     }
@@ -58,7 +58,10 @@ const InputField = ({ poppins }: { poppins: string }) => {
     <div className="flex justify-center items-center w-full lg:w-2/5 2xl:w-2/6 p-10 lg:p-12 2xl:p-24">
       <div className="hidden md:flex w-full h-full">
         {showAlert && (
-          <Alert severity={alertSeverity} className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-xl mt-2 rounded-3xl">
+          <Alert
+            severity={alertSeverity}
+            className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-xl mt-2 rounded-3xl"
+          >
             {alertMessage}
           </Alert>
         )}
@@ -71,10 +74,7 @@ const InputField = ({ poppins }: { poppins: string }) => {
               review={review}
               setReview={setReview}
             />
-            <SendButton
-              poppins={poppins}
-              onClick={handleSubmit}
-            />
+            <SendButton poppins={poppins} onClick={handleSubmit} />
           </div>
         </div>
       </div>
@@ -90,12 +90,11 @@ const InputField = ({ poppins }: { poppins: string }) => {
               setReview={setReview}
             />
             {showAlert && (
-              <Alert severity={alertSeverity} className="mb-4">{alertMessage}</Alert>
+              <Alert severity={alertSeverity} className="mb-4">
+                {alertMessage}
+              </Alert>
             )}
-            <SendButton
-              poppins={poppins}
-              onClick={handleSubmit}
-            />
+            <SendButton poppins={poppins} onClick={handleSubmit} />
           </div>
         </div>
       </div>
