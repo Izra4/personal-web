@@ -6,9 +6,9 @@ export async function POST(request: Request) {
   const data = await prisma.roast.create({
     data: {
       name,
-      review: roast
-    }
-  })
+      review: roast,
+    },
+  });
 
-  return new Response(JSON.stringify(data), { status: 201});
-};
+  return new Response(JSON.stringify(data), { status: 201 });
+}
