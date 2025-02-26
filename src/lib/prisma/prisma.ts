@@ -51,8 +51,7 @@ export const prismaWithTrashed = prisma.$extends(
  */
 export default prismaWithTrashed.$extends(
   createSoftDeleteExtension({
-    models: {
-    },
+    models: {},
     defaultConfig: {
       field: "deletedAt",
       createValue: (deleted) => {

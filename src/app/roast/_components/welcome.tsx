@@ -22,7 +22,6 @@ const WelcomeField: React.FC<WelcomeFieldProps> = ({
 }) => {
   return (
     <div className="lg:w-4/6 flex items-center px-8 lg:px-12">
-
       {/* Dekstop */}
       <div className="hidden md:flex">
         <div className="w-full h-4/5 flex flex-row">
@@ -46,10 +45,9 @@ const WelcomeField: React.FC<WelcomeFieldProps> = ({
               <p
                 className={`${poppinsClass} text-primary_text font-normal text-[12px] lg:text-[17px] 2xl:text-[20px] text-justify`}
               >
-                This thing is 100% secure, anonymous, not a phishing, not a scam,
-                not a fraud, not a trap, not a scheme, not a risk, not misleading,
-                not a hoax, not spyware, not malware, not a lie, not intrusive,
-                not unethical, and not dangerous.
+                This thing is 100% secure, anonymous, not a phishing, not a scam, not a fraud, not a
+                trap, not a scheme, not a risk, not misleading, not a hoax, not spyware, not
+                malware, not a lie, not intrusive, not unethical, and not dangerous.
               </p>
             </div>
           </div>
@@ -75,18 +73,14 @@ const WelcomeField: React.FC<WelcomeFieldProps> = ({
             <div className="flex items-center justify-center mb-6">
               <Image src="/honest.png" alt="roast" width={100} height={100} />
             </div>
-            <p
-              className={`${poppinsClass} text-primary_text font-normal text-[14px] text-center`}
-            >
-              This thing is 100% secure, anonymous, not a phishing, not a scam,
-              not a fraud, not a trap, not a scheme, not a risk, not misleading,
-              not a hoax, not spyware, not malware, not a lie, not intrusive,
-              not unethical, and not dangerous.
+            <p className={`${poppinsClass} text-primary_text font-normal text-[14px] text-center`}>
+              This thing is 100% secure, anonymous, not a phishing, not a scam, not a fraud, not a
+              trap, not a scheme, not a risk, not misleading, not a hoax, not spyware, not malware,
+              not a lie, not intrusive, not unethical, and not dangerous.
             </p>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

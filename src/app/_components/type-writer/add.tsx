@@ -6,12 +6,12 @@ const useTypeWriter = (text: string, speed: number, onFinished?: () => void) => 
 
   useEffect(() => {
     if (index >= text.length) {
-      if (onFinished) onFinished();  // Trigger callback when finished
+      if (onFinished) onFinished(); // Trigger callback when finished
       return;
     }
 
     const timeoutId = setTimeout(() => {
-      setIndex(i => i + 1);
+      setIndex((i) => i + 1);
     }, speed);
 
     return () => {
@@ -20,10 +20,20 @@ const useTypeWriter = (text: string, speed: number, onFinished?: () => void) => 
   }, [index, text, speed, onFinished]);
 
   return displayText;
-}
+};
 
-export const TypeWriter = ({ text, speed, className, onFinished }: { text: string; speed: number; className?: string; onFinished?: () => void }) => {
+export const TypeWriter = ({
+  text,
+  speed,
+  className,
+  onFinished,
+}: {
+  text: string;
+  speed: number;
+  className?: string;
+  onFinished?: () => void;
+}) => {
   const currentText = useTypeWriter(text, speed, onFinished);
 
   return <p className={className}>{currentText}</p>;
-}
+};

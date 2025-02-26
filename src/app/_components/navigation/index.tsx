@@ -1,15 +1,14 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Image from 'next/image';
-import Link from 'next/link';
-import MenuMobile from './mobile';
-import MenuDesktop from './dekstop';
+import Image from "next/image";
+import Link from "next/link";
+import MenuMobile from "./mobile";
+import MenuDesktop from "./dekstop";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
-  
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -22,10 +21,10 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -36,12 +35,12 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     handleResize();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -58,12 +57,12 @@ const Navbar = () => {
       <MenuDesktop closeMenu={closeMenu} />
 
       {/* Ham Icon */}
-      <div className='md:hidden flex items-center' onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <GiHamburgerMenu color='black' size={25} className='mr-8'/>
+      <div className="md:hidden flex items-center" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <GiHamburgerMenu color="black" size={25} className="mr-8" />
       </div>
 
       {/* Menu - Mobile */}
-      <MenuMobile isMenuOpen={isMenuOpen} closeMenu={closeMenu} menuRef={menuRef}/>
+      <MenuMobile isMenuOpen={isMenuOpen} closeMenu={closeMenu} menuRef={menuRef} />
     </nav>
   );
 };

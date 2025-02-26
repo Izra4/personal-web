@@ -54,19 +54,19 @@ const RoastPage = () => {
           isRemovingFinished={isRemovingFinished}
           handleRemovingFinished={handleRemovingFinished}
         />
-        <InputField poppins={poppins.className}/>
+        <InputField poppins={poppins.className} />
       </div>
 
       <div className="flex flex-col justify-start items-center w-full min-h-screen md:hidden">
         <WelcomeField
-            lexendClass={lexend.className}
-            poppinsClass={poppins.className}
-            texts={texts}
-            currentIndex={currentIndex}
-            isRemovingFinished={isRemovingFinished}
-            handleRemovingFinished={handleRemovingFinished}
+          lexendClass={lexend.className}
+          poppinsClass={poppins.className}
+          texts={texts}
+          currentIndex={currentIndex}
+          isRemovingFinished={isRemovingFinished}
+          handleRemovingFinished={handleRemovingFinished}
         />
-        <InputField poppins={poppins.className}/>
+        <InputField poppins={poppins.className} />
       </div>
     </div>
   );

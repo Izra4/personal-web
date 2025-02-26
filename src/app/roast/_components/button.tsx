@@ -2,7 +2,13 @@
 
 import { MouseEventHandler } from "react";
 
-const SendButton = ({ onClick, poppins }: { onClick: MouseEventHandler<HTMLButtonElement>; poppins: string }) => {
+const SendButton = ({
+  onClick,
+  poppins,
+}: {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  poppins: string;
+}) => {
   return (
     <div className="flex items-center justify-center">
       <button
@@ -13,7 +19,9 @@ const SendButton = ({ onClick, poppins }: { onClick: MouseEventHandler<HTMLButto
           active:scale-y-75"
       >
         <div className="absolute inset-0 w-3 bg-secondary_text transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-        <span className={`${poppins} relative text-primary_text font-semibold group-hover:text-primary`}>
+        <span
+          className={`${poppins} relative text-primary_text font-semibold group-hover:text-primary`}
+        >
           Send!
         </span>
       </button>

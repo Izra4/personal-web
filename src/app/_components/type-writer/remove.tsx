@@ -1,6 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
 
-const useTypeWriter = (text: string, speed: number, removeSpeed: number, onFinished?: () => void) => {
+const useTypeWriter = (
+  text: string,
+  speed: number,
+  removeSpeed: number,
+  onFinished?: () => void,
+) => {
   const [index, setIndex] = useState(0);
   const [removing, setRemoving] = useState(false);
   const [startedRemoving, setStartedRemoving] = useState(false); // Untuk menandai apakah sudah ada jeda 2 detik
@@ -21,7 +26,7 @@ const useTypeWriter = (text: string, speed: number, removeSpeed: number, onFinis
 
     if (removing && index > 0) {
       const timeoutId = setTimeout(() => {
-        setIndex(i => i - 1);
+        setIndex((i) => i - 1);
       }, removeSpeed);
 
       return () => clearTimeout(timeoutId);
@@ -29,7 +34,7 @@ const useTypeWriter = (text: string, speed: number, removeSpeed: number, onFinis
 
     if (!removing && index < text.length) {
       const timeoutId = setTimeout(() => {
-        setIndex(i => i + 1);
+        setIndex((i) => i + 1);
       }, speed);
 
       return () => clearTimeout(timeoutId);
@@ -43,7 +48,19 @@ const useTypeWriter = (text: string, speed: number, removeSpeed: number, onFinis
   return displayText;
 };
 
-export const TypeWriterRemove = ({ text, speed, removeSpeed, className, onFinished }: { text: string; speed: number; removeSpeed: number; className?: string; onFinished?: () => void }) => {
+export const TypeWriterRemove = ({
+  text,
+  speed,
+  removeSpeed,
+  className,
+  onFinished,
+}: {
+  text: string;
+  speed: number;
+  removeSpeed: number;
+  className?: string;
+  onFinished?: () => void;
+}) => {
   const currentText = useTypeWriter(text, speed, removeSpeed, onFinished);
 
   return <p className={className}>{currentText}</p>;
