@@ -102,7 +102,7 @@ const Form = ({ poppins }: { poppins: string }) => {
 
       {/* Modal to display short URL */}
       <Dialog open={showModal} onClose={handleCloseModal}>
-        <DialogTitle>Short URL Created</DialogTitle>
+        <DialogTitle>Your short URL Created</DialogTitle>
         <DialogContent>
           <p>Your short URL is:</p>
           <p>

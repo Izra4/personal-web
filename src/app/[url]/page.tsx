@@ -8,8 +8,6 @@ export default function GetLongURL() {
 
   useEffect(() => {
     if (url) {
-      console.log(url);
-      // Make a fetch request to the backend API to get the long URL
       fetch(`/api/finder?url=${url}`)
         .then((response) => response.json())
         .then((data) => {
