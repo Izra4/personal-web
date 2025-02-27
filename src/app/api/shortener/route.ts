@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma/prisma";
 import { randomUrlGenerator } from "@/utils/random-url-generator";
+import validUrl from "valid-url";
 
 export async function POST(request: Request) {
   const { longURL, customURL } = await request.json();
@@ -7,6 +8,12 @@ export async function POST(request: Request) {
 
   if (!longURL) {
     return new Response("Long URL is required", { status: 400 });
+  }
+
+  if (!validUrl.isUri(longURL)) {
+    return new Response("Are you sure that is a valid URL? Retry with a valid one :D", {
+      status: 400,
+    });
   }
 
   if (!customURL) {
