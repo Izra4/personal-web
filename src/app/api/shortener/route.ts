@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma/prisma";
+import { isValidCustomURL } from "@/utils/custom-url-validation";
 import { randomUrlGenerator } from "@/utils/random-url-generator";
 import validUrl from "valid-url";
 
@@ -18,6 +19,10 @@ export async function POST(request: Request) {
 
   if (!customURL) {
     randomURL = randomUrlGenerator();
+  } else {
+    if (!isValidCustomURL(customURL)) {
+      return new Response("Whoops! Special character and space is not allowed...", { status: 400 });
+    }
   }
 
   const shortURLExist = await prisma.shortener.findFirst({
