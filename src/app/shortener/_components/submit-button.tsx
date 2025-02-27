@@ -22,7 +22,7 @@ const SubmitButton = ({
         <span
           className={`${poppins} relative text-primary_text font-semibold group-hover:text-primary`}
         >
-          Send!
+          Short it!
         </span>
       </button>
     </div>
