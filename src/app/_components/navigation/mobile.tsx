@@ -18,14 +18,17 @@ const MenuMobile = ({
       <NavLink href="/home" onClick={closeMenu}>
         Home
       </NavLink>
-      <NavLink href="/experience" onClick={closeMenu}>
-        Experience
+      <NavLink href="/blog" onClick={closeMenu}>
+        Blog
       </NavLink>
       <NavLink href="/roast" onClick={closeMenu}>
         Roast Me
       </NavLink>
       <NavLink href="/about" onClick={closeMenu}>
         About Me
+      </NavLink>
+      <NavLink href="/shortener" onClick={closeMenu}>
+        URL Shortener
       </NavLink>
     </ul>
   );

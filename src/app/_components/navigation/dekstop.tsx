@@ -6,8 +6,8 @@ const MenuDesktop = ({ closeMenu }: { closeMenu: () => void }) => {
       <NavLink href="/home" onClick={closeMenu}>
         Home
       </NavLink>
-      <NavLink href="/experience" onClick={closeMenu}>
-        Experience
+      <NavLink href="/blog" onClick={closeMenu}>
+        Blog
       </NavLink>
       <NavLink href="/roast" onClick={closeMenu}>
         Roast Me
