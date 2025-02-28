@@ -44,6 +44,7 @@ const RoastPage = () => {
 
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
+      <title>Izra.me | Roast</title>
       <Navbar />
       <div className="hidden md:flex flex-row w-full h-screen">
         <WelcomeField

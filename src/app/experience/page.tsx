@@ -18,6 +18,7 @@ const lexend = Lexend({
 const ExperiencePage: React.FC = () => {
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
+      <title>Izra.me | Experience</title>
       <Navbar />
       <Development lexend={lexend.className} poppins={poppins.className} />
     </div>

@@ -8,6 +8,7 @@ import ProfileImage from "./_components/image";
 const DashboardPage = () => {
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
+      <title>Izra.me | Home</title>
       <Navbar />
 
       {/* Desktop */}

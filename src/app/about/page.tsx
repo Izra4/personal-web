@@ -18,6 +18,7 @@ const lexend = Lexend({
 const AboutPage: React.FC = () => {
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
+      <title>Izra.me | About</title>
       <Navbar />
       <Development lexend={lexend.className} poppins={poppins.className} />
     </div>
