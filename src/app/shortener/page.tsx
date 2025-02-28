@@ -20,6 +20,7 @@ const lexend = Lexend({
 const ShortenerPage: React.FC = () => {
   return (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
+      <title>Izra.me | Shortener</title>
       <Navbar />
       <Index lexend={lexend.className} poppins={poppins.className}></Index>
     </div>

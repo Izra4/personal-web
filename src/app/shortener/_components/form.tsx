@@ -1,8 +1,9 @@
-import { Alert, Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/material";
+import { Alert, Dialog } from "@mui/material";
 import SubmitButton from "./submit-button";
 import Input from "./input";
 import { useState } from "react";
 import Image from "next/image";
+import Modal from "./modal";
 
 const Form = ({ poppins }: { poppins: string }) => {
   const [longURL, setLongURL] = useState("");
@@ -40,8 +41,8 @@ const Form = ({ poppins }: { poppins: string }) => {
         setAlertMessage("Short URL created successfully!");
         setAlertSeverity("success");
         setShowAlert(true);
-        setModalData(responseData.shortURL); // Assuming the API returns the short URL as `shortURL`
-        setShowModal(true); // Show the modal with the response data
+        setModalData(process.env.NEXT_PUBLIC_BASE_URL + responseData.shortURL);
+        setShowModal(true);
         setTimeout(() => setShowAlert(false), 7000);
       } else {
         const errorData = await response.text();
@@ -102,18 +103,7 @@ const Form = ({ poppins }: { poppins: string }) => {
 
       {/* Modal to display short URL */}
       <Dialog open={showModal} onClose={handleCloseModal}>
-        <DialogTitle>Your short URL Created</DialogTitle>
-        <DialogContent>
-          <p>Your short URL is:</p>
-          <p>
-            <strong>{modalData}</strong>
-          </p>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseModal} color="primary">
-            Close
-          </Button>
-        </DialogActions>
+        <Modal poppins={poppins} modalData={modalData} handleCloseModal={handleCloseModal}></Modal>
       </Dialog>
     </div>
   );
