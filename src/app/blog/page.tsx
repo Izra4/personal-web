@@ -20,9 +20,8 @@ const BlogPage: React.FC = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Getting Started with React ",
-      content:
-        "Learn the basics of React and how to build your first component in this introductory guide.",
+      title: "TRPC: Apa, Kenapa dan Bagaimana",
+      content: "Discover the power of TRPC and how it simplifies backend development.",
       imageUrl: "https://via.placeholder.com/400x250",
     },
     {
@@ -62,6 +61,7 @@ const BlogPage: React.FC = () => {
               title={post.title}
               content={post.content}
               imageUrl={""}
+              id={post.id}
             />
           ))}
         </div>

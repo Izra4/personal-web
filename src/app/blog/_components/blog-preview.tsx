@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
 interface BlogPreviewProps {
+  id: number;
   title: string;
   content: string;
   imageUrl: string;
@@ -9,7 +12,7 @@ interface BlogPreviewProps {
   poppins: string;
 }
 
-const BlogPreview = ({ title, content, imageUrl, lexend, poppins }: BlogPreviewProps) => {
+const BlogPreview = ({ title, content, imageUrl, lexend, poppins, id }: BlogPreviewProps) => {
   return (
     <div className="bg-white rounded-lg shadow-lg flex flex-col">
       <Image
@@ -37,6 +40,7 @@ const BlogPreview = ({ title, content, imageUrl, lexend, poppins }: BlogPreviewP
           <button
             className={`${poppins} bg-[#962727] hover:bg-secondary_text text-white px-4 py-2 
                        rounded-md hover:bg-primary-dark text-sm transition-all duration-300 ease-in-out`}
+            onClick={() => (window.location.href = `/blog/${id}`)}
           >
             Details
           </button>
