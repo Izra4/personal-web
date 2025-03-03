@@ -66,6 +66,9 @@ export default function GetLongURL() {
           if (data.error) {
             redirect("/404");
           } else {
+            setAlertMessage("Redirecting...");
+            setAlertSeverity("success");
+            setShowAlert(true);
             window.location.href = data.longURL;
           }
         });
@@ -79,12 +82,12 @@ export default function GetLongURL() {
 
   return requiresPassword ? (
     <div className="bg-primary w-screen min-h-screen lg:h-screen flex flex-col">
-      <div className="flex justify-center items-center w-screen min-h-screen flex-col">
+      <div className="flex justify-center items-center w-screen min-h-screen flex-col px-12">
         <p className={`${lexend.className} font-semibold text-2xl text-primary_text text-center`}>
           This link is <span className="text-secondary_text"> protected! </span> <br />
           Enter the password to access it.
         </p>
-        <div className="flex flex-col w-1/3 h-fit bg-[#F9FAFB] rounded-lg shadow-lg p-4 mt-4">
+        <div className="flex flex-col w-full md:w-1/3 h-fit bg-[#F9FAFB] rounded-lg shadow-lg p-4 mt-4">
           <div className="w-full h-full flex flex-col">
             {showAlert && (
               <Alert severity={alertSeverity} className="mb-1">

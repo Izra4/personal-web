@@ -69,7 +69,7 @@ const Form = ({ poppins }: { poppins: string }) => {
   };
 
   return (
-    <div className={`${poppins} bg-[#F9FAFB] w-1/3 h-fit mt-4 rounded-xl shadow-lg`}>
+    <div className={`${poppins} bg-[#F9FAFB] w-full xl:w-1/3 h-fit mt-4 rounded-xl shadow-lg`}>
       <form className="flex flex-col w-full h-full text-primary_text font-medium text-md px-8 mt-6">
         <Input
           poppinsClass={poppins}

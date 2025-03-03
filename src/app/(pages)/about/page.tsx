@@ -35,6 +35,11 @@ export default function Terminal() {
           return;
         }
 
+        if (currentBootIndex === bootMessages.length - 2) {
+          setLogs([]);
+          setLogs((prev) => [...prev, bootMessages[currentBootIndex]]);
+        }
+
         setCurrentBootIndex((prev) => prev + 1);
       }, 500);
 
@@ -75,7 +80,7 @@ export default function Terminal() {
   };
 
   const handleCommand = (cmd: string) => {
-    let output = "Unknown command. Type '-h' for help.";
+    let output = "Unknown command. Type 'h' for help.";
     switch (cmd) {
       case "h":
         output =
@@ -91,7 +96,10 @@ export default function Terminal() {
       case "exp":
         output =
           "I've worked on a few projects, here are some of them:\n" +
-          "- Aman.in: The project that used to secure the document, using AES encryption to handle the data.\n";
+          "- Aman.in  : The project that used to secure the document, using AES encryption to handle the data.\n" +
+          "- Sisuka.id: The project for donation, selling merchandise\n" +
+          "- Growbiz  : E-Learning project with course integration, using Midtrans as payment gateway\n" +
+          "- BEST     : Web profile for Brawijaya Esport (UKM UB), ";
         break;
       case "clear":
         setLogs([]);
