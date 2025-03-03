@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Navbar from "../_components/navigation/index";
+import Navbar from "../../_components/navigation/index";
 import Description from "./_components/description";
 import Heading from "./_components/header";
 import ProfileImage from "./_components/image";

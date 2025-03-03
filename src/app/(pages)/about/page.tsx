@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Navbar from "../_components/navigation";
+import Navbar from "../../_components/navigation";
 
 const bootMessages = [
   "Booting up...",

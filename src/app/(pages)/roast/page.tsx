@@ -2,7 +2,7 @@
 
 import { Lexend, Poppins } from "next/font/google";
 import { useState, useEffect } from "react";
-import Navbar from "../_components/navigation";
+import Navbar from "../../_components/navigation";
 import WelcomeField from "./_components/welcome";
 import InputField from "./_components/input-field";
 

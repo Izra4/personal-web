@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../_components/navigation";
+import Navbar from "../../_components/navigation";
 import { Lexend, Poppins } from "next/font/google";
 import BlogPreview from "./_components/blog-preview";
 
