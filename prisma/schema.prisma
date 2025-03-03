@@ -19,7 +19,8 @@ model Roast {
 model Shortener {
   id        String    @id @default(uuid())
   longURL   String    @db.Text() @map("long_url")
-  shortURL  String?    @db.VarChar(255) @map("short_url")
+  shortURL  String?   @db.VarChar(255) @map("short_url")
+  password  String?   @db.VarChar(255)
   createdAt DateTime  @default(now())
 
   @@map("shorteners")
