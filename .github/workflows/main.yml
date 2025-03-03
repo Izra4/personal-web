@@ -22,6 +22,7 @@ jobs:
           echo "DB_URL=${{ secrets.DB_URL }}" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
           echo "PORT_FORWARD=${{ secrets.PORT_FORWARD }}" >> .env
+          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
 
       - name: Stop and Remove Existing Containers
         run: |
