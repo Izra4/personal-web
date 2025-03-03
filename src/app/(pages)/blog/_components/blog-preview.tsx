@@ -39,7 +39,7 @@ const BlogPreview = ({ title, content, imageUrl, lexend, poppins, id }: BlogPrev
         <div className="flex justify-end items-end">
           <button
             className={`${poppins} bg-[#962727] hover:bg-secondary_text text-white px-4 py-2 
-                       rounded-md hover:bg-primary-dark text-sm transition-all duration-300 ease-in-out`}
+                       rounded-md text-sm transition-all duration-300 ease-in-out`}
             onClick={() => (window.location.href = `/blog/${id}`)}
           >
             Details
