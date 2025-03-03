@@ -24,4 +24,5 @@ model Shortener {
   createdAt DateTime  @default(now())
 
   @@map("shorteners")
+  @@index([shortURL], map: "short_url")
 }
