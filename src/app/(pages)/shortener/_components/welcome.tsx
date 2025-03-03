@@ -7,7 +7,8 @@ const Welcome = ({ lexend }: { lexend: string }) => {
         simpler here,
         <br />
         you can also
-        <span className="text-secondary_text"> customize </span> it!
+        <span className="text-secondary_text"> customize </span> and make it more secure with
+        <span className="text-secondary_text"> password! </span>
       </p>
       <p className="text-primary_text text-xs text-center mt-4 -mb-6">
         Don&apos;t worry, it&apos;s permanent as long as my server doesn&apos;t get down...

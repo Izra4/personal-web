@@ -1,11 +1,13 @@
 import prisma from "@/lib/prisma/prisma";
+import { hashPassword } from "@/utils/bcrypt";
 import { isValidCustomURL } from "@/utils/custom-url-validation";
 import { randomUrlGenerator } from "@/utils/random-url-generator";
 import validUrl from "valid-url";
 
 export async function POST(request: Request) {
-  const { longURL, customURL } = await request.json();
+  const { longURL, customURL, password } = await request.json();
   let randomURL;
+  let hashedPassword;
 
   if (!longURL) {
     return new Response("Long URL is required", { status: 400 });
@@ -24,6 +26,8 @@ export async function POST(request: Request) {
       return new Response("Whoops! Special character and space is not allowed...", { status: 400 });
     }
   }
+
+  if (password) hashedPassword = await hashPassword(password);
 
   const shortURLExist = await prisma.shortener.findFirst({
     select: {
@@ -44,6 +48,7 @@ export async function POST(request: Request) {
     data: {
       longURL: longURL,
       shortURL: customURL ? "/" + customURL : "/" + randomURL,
+      password: hashedPassword ? hashedPassword : null,
     },
   });
 
