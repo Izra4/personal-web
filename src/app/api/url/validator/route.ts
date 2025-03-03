@@ -21,11 +21,17 @@ export async function GET(request: Request) {
       headers: { "Content-Type": "application/json" },
     });
 
-  if (shortURLExist?.password !== null)
+  if (shortURLExist?.password !== null) {
     return new Response(JSON.stringify({ password: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+  } else {
+    return new Response(JSON.stringify({ password: false }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 }
 
 export async function POST(request: Request) {
