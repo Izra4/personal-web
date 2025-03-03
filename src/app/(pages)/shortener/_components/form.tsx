@@ -8,11 +8,12 @@ import Modal from "./modal";
 const Form = ({ poppins }: { poppins: string }) => {
   const [longURL, setLongURL] = useState("");
   const [customURL, setCustomURL] = useState("");
+  const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const [showAlert, setShowAlert] = useState(false);
   const [alertSeverity, setAlertSeverity] = useState<"error" | "success">("error");
-  const [showModal, setShowModal] = useState(false); // To manage modal visibility
-  const [modalData, setModalData] = useState<string>(""); // Data to display in modal
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,13 +32,14 @@ const Form = ({ poppins }: { poppins: string }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ longURL, customURL }),
+        body: JSON.stringify({ longURL, customURL, password }),
       });
 
       if (response.ok) {
         const responseData = await response.json();
         setLongURL("");
         setCustomURL("");
+        setPassword("");
         setAlertMessage("Short URL created successfully!");
         setAlertSeverity("success");
         setShowAlert(true);
@@ -47,6 +49,7 @@ const Form = ({ poppins }: { poppins: string }) => {
       } else {
         const errorData = await response.text();
         setCustomURL("");
+        setPassword("");
         setAlertMessage(errorData);
         setAlertSeverity("error");
         setShowAlert(true);
@@ -84,10 +87,22 @@ const Form = ({ poppins }: { poppins: string }) => {
           id={"customURL"}
           name={"customURL"}
           label={"Your custom URL here"}
-          placeholder={"rekomendasi-film-2025"}
+          placeholder={"rekomendasi-film-2025 (optional)"}
           value={customURL}
           onChange={(e) => {
             setCustomURL(e.target.value);
+          }}
+        />
+        <Input
+          poppinsClass={poppins}
+          id={"password"}
+          name={"password"}
+          label={"Your password here"}
+          placeholder={"strongPassword123 (optional)"}
+          value={password}
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
           }}
         />
         <div className="flex justify-center items-center mt-3">
