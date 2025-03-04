@@ -21,6 +21,6 @@ COPY --from=builder /app/prisma ./prisma
 # Ekspos port aplikasi
 
 # Jalankan migrasi Prisma dan aplikasi saat container berjalan
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
 EXPOSE 3000
 
