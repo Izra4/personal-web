@@ -26,13 +26,3 @@ model Shortener {
   @@map("shorteners")
   @@index([shortURL], map: "short_url")
 }
-
-model RegisDemo {
-  id        String    @id @default(uuid())
-  nama      String    @db.VarChar(255)
-  nim       String    @db.VarChar(255)
-  origin    String    @db.VarChar(255)
-  createdAt DateTime  @default(now())
-
-  @@map("regis_demos")
-}
