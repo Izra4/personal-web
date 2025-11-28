@@ -1,7 +1,8 @@
 "use client";
 
 import BirthdayAuthGate from "./_components/AuthGate";
-
+import html2canvas from "html2canvas";
+import { useRef } from "react";
 import { Lexend } from "next/font/google";
 import { useState } from "react";
 import { useMusic } from "./_components/music-context";
@@ -46,6 +47,26 @@ const BirthdayPage = () => {
   const [balloons] = useState(() => generateBalloons(15));
   const { toggleMusic, playing } = useMusic();
   const [wishOpen, setWishOpen] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [wishText, setWishText] = useState("");
+  const [addressInput, setAddressInput] = useState(false);
+  const [address, setAddress] = useState("");
+
+  const downloadCard = async () => {
+    if (!cardRef.current) return;
+
+    const canvas = await html2canvas(cardRef.current, {
+      scale: 2, // biar high-resolution
+      backgroundColor: null,
+    });
+
+    const dataUrl = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = dataUrl;
+    link.download = "wish-card.png";
+    link.click();
+  };
 
   const restartAnimation = (e: React.AnimationEvent<HTMLDivElement>) => {
     const el = e.currentTarget;
@@ -150,12 +171,20 @@ const BirthdayPage = () => {
               Keyla Azzelia Putri! <span className="text-lg">a.k.a JAMET</span>
             </h1>
           </div>
-          <button
-            onClick={() => setWishOpen(true)}
-            className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
-          >
-            Make a Wish ✨
-          </button>
+          <div className="flex flex-col space-y-4">
+            <button
+              onClick={() => setWishOpen(true)}
+              className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
+            >
+              Make a Wish ✨
+            </button>
+            <button
+              onClick={() => setAddressInput(true)}
+              className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
+            >
+              Send me a Gift!
+            </button>
+          </div>
         </div>
 
         <div className="w-1/4 h-full bg-black flex flex-row">
@@ -216,13 +245,12 @@ const BirthdayPage = () => {
         </div>
         {wishOpen && (
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999] animate-fadeIn"
-            onClick={() => setWishOpen(false)} // klik luar = close
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
+            onClick={() => setWishOpen(false)}
           >
-            {/* Card */}
             <div
-              className="bg-white w-[450px] rounded-2xl shadow-2xl p-6 relative animate-scaleIn"
-              onClick={(e) => e.stopPropagation()} // biar klik card ga nutup
+              className="bg-white rounded-2xl shadow-2xl p-6 relative animate-scaleIn"
+              onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
               <button
@@ -232,26 +260,89 @@ const BirthdayPage = () => {
                 ×
               </button>
 
-              <h2 className={`${lexend.className} text-2xl font-semibold text-[#642CA9] mb-4`}>
-                Make your wish 💫
-              </h2>
+              <div
+                ref={cardRef}
+                className="w-[400px] bg-[#FFDDE1] rounded-2xl p-6 shadow-xl relative"
+              >
+                {/* Decorative background */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#ffb8c9] to-[#ffd8e1] opacity-40" />
 
-              <p className="text-sm text-gray-600 mb-4">
-                anything. For yourself, your family, your future, or.. <br />
-                <span className="italic font-semibold text-[#642CA9]">for us? AWKAWK</span>
+                <h2
+                  className={`${lexend.className} relative text-2xl font-semibold text-[#642CA9] mb-4`}
+                >
+                  My Birthday Wish 🎀
+                </h2>
+
+                <p className="relative text-sm text-gray-700 leading-relaxed mb-8">
+                  {wishText ||
+                    "Write your wish below... Anything, for yourself, your family, or... for us? AWOKOWAKK JAMET BEUT SIAL"}
+                </p>
+
+                <p className="absolute bottom-4 left-6 text-xs text-[#642CA9]/60 ">— from myself</p>
+              </div>
+
+              {/* INPUT AREA */}
+              <textarea
+                className="mt-4 w-full h-28 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#642CA9] outline-none"
+                placeholder="Write your wish..."
+                value={wishText}
+                onChange={(e) => setWishText(e.target.value)}
+              />
+              <p className="text-red-500 text-xs">
+                *Relax, your wishes wont be shared to me (izra).
               </p>
 
-              <textarea
-                className="w-full h-32 p-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-[#642CA9] outline-none"
-                placeholder="Write your wish here..."
-              ></textarea>
+              {/* Buttons */}
+              <div className="mt-4 flex gap-3">
+                <button
+                  onClick={downloadCard}
+                  className="flex-1 bg-[#642CA9] text-white py-2 rounded-lg shadow-md hover:bg-[#53228a] transition active:scale-95"
+                >
+                  Download Wish Card
+                </button>
 
+                <button
+                  onClick={() => setWishOpen(false)}
+                  className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 active:scale-95"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {addressInput && (
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
+            onClick={() => setWishOpen(false)}
+          >
+            <div
+              className="bg-white rounded-2xl shadow-2xl p-6 relative animate-scaleIn"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
-                className="w-full mt-4 bg-[#642CA9] text-white py-2 rounded-lg shadow-md hover:bg-[#51208b] transition active:scale-95"
-                onClick={() => setWishOpen(false)}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
+                onClick={() => setAddressInput(false)}
               >
-                Send Wish 🎉
+                ×
               </button>
+              <p className="text-gray-700">
+                Sending a gift is impossible without knowing your address, so write it down below!
+              </p>
+              <textarea
+                className="mt-4 w-full h-28 p-3 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#642CA9] outline-none"
+                placeholder="Send me your address here... (the address that you use for shipping things)"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <p className="text-xs text-red-500">Make sure jangan salah anjir</p>
+              <div className="mt-2 w-full flex justify-center items-center">
+                <button className="flex-1 bg-[#642CA9] text-white py-2 rounded-lg shadow-md hover:bg-[#53228a] transition active:scale-95">
+                  Send
+                </button>
+              </div>
             </div>
           </div>
         )}
