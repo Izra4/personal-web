@@ -126,7 +126,7 @@ const BirthdayPage = () => {
 
   return (
     <BirthdayAuthGate>
-      <div className="h-screen w-screen bg-[#FFDDE1] flex flex-col md:flex-row relative overflow-hidden">
+      <div className="min-h-screen md:h-screen w-screen bg-[#FFDDE1] flex flex-col md:flex-row relative overflow-x-hidden md:overflow-hidden">
         <div className="mt-12 md:mt-0 absolute top-4 left-4 z-50 flex flex-row items-center space-x-4">
           <a href="/home">
             <img src="logo.svg" alt="Logo" className="w-8 h-8 object-contain drop-shadow-lg" />
@@ -150,65 +150,67 @@ const BirthdayPage = () => {
         </div>
 
         {/* BALLOONS */}
-        {balloons.map((b) => (
-          <div
-            key={b.id}
-            className="absolute bottom-0 pointer-events-none"
-            style={{
-              left: `${b.left}%`,
-              animationDelay: `${b.delay}s`,
-            }}
-          >
-            {/* ROTATE wrapper */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+          {balloons.map((b) => (
             <div
-              className="rotateWrapper"
-              style={
-                {
-                  "--rotateDuration": `${b.rotateDuration}s`,
-                  "--rot-start": b.rotStart,
-                  "--rot-end": b.rotEnd,
-                } as never
-              }
+              key={b.id}
+              className="absolute bottom-0"
+              style={{
+                left: `${b.left}%`,
+                animationDelay: `${b.delay}s`,
+              }}
             >
-              {/* SWAY wrapper */}
+              {/* ROTATE wrapper */}
               <div
-                className="swayWrapper"
-                style={{ "--swayDuration": `${b.swayDuration}s` } as never}
+                className="rotateWrapper"
+                style={
+                  {
+                    "--rotateDuration": `${b.rotateDuration}s`,
+                    "--rot-start": b.rotStart,
+                    "--rot-end": b.rotEnd,
+                  } as never
+                }
               >
-                {/* PULSE wrapper */}
+                {/* SWAY wrapper */}
                 <div
-                  className="pulseWrapper"
-                  style={{ "--pulseDuration": `${b.pulseDuration}s` } as never}
+                  className="swayWrapper"
+                  style={{ "--swayDuration": `${b.swayDuration}s` } as never}
                 >
-                  {/* FLOAT wrapper (ini yang naik) */}
+                  {/* PULSE wrapper */}
                   <div
-                    className="balloon floatWrapper rounded-full relative will-change-transform"
-                    style={
-                      {
-                        width: `${b.width * 4}px`,
-                        height: `${b.height * 4}px`,
-                        backgroundColor: b.color.bg,
-                        "--duration": `${b.duration}s`,
-                        "--scaleStart": b.scaleStart,
-                        "--scaleEnd": b.scaleEnd,
-                      } as never
-                    }
-                    onAnimationIteration={restartAnimation}
+                    className="pulseWrapper"
+                    style={{ "--pulseDuration": `${b.pulseDuration}s` } as never}
                   >
+                    {/* FLOAT wrapper (ini yang naik) */}
                     <div
-                      className="absolute left-1/2 top-full -translate-x-1/2"
-                      style={{
-                        width: "2px",
-                        height: "40px",
-                        backgroundColor: b.color.string,
-                      }}
-                    ></div>
+                      className="balloon floatWrapper rounded-full relative will-change-transform"
+                      style={
+                        {
+                          width: `${b.width * 4}px`,
+                          height: `${b.height * 4}px`,
+                          backgroundColor: b.color.bg,
+                          "--duration": `${b.duration}s`,
+                          "--scaleStart": b.scaleStart,
+                          "--scaleEnd": b.scaleEnd,
+                        } as never
+                      }
+                      onAnimationIteration={restartAnimation}
+                    >
+                      <div
+                        className="absolute left-1/2 top-full -translate-x-1/2"
+                        style={{
+                          width: "2px",
+                          height: "40px",
+                          backgroundColor: b.color.string,
+                        }}
+                      ></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         <title>Happy Birthday, Keyla!</title>
 
@@ -280,14 +282,15 @@ const BirthdayPage = () => {
             </div>
           </div>
 
-          <div className="w-1/5 h-full bg-[#FFDDE1] flex items-center justify-center">
+          <div className="w-full md:w-1/5 h-auto md:h-full bg-[#FFDDE1] flex items-center justify-center py-6 md:py-0">
             <p
-              className={`${lexend.className} text-[#642CA9] text-2xl font-bold [writing-mode:vertical-rl] bg-gray-50 py-4 px-2 rounded-lg shadow-lg`}
+              className={`${lexend.className} text-[#642CA9] text-2xl font-bold md:[writing-mode:vertical-rl] bg-gray-50 py-4 px-2 rounded-lg shadow-lg`}
             >
               Si Jamet Ulang Tahun
             </p>
           </div>
         </div>
+
         <div className="purple-glow" style={{ top: "-150px", left: "-150px" }}></div>
         <div className="purple-glow" style={{ top: "-150px", right: "-150px" }}></div>
         <div className="purple-glow" style={{ bottom: "-150px", left: "-150px" }}></div>
@@ -342,7 +345,7 @@ const BirthdayPage = () => {
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#ffb8c9] to-[#ffd8e1] opacity-40" />
 
                 <h2
-                  className={`${lexend.className} relative text-2xl font-semibold text-[#642CA9] mb-4`}
+                  className={`${lexend.className} relative text-2xl font-semibold text-[#642CA9] -mt-4 mb-4`}
                 >
                   My Birthday Wish 🎀
                 </h2>
@@ -352,7 +355,7 @@ const BirthdayPage = () => {
                     "Write your wish below... Anything, for yourself, your family, or... for us? AWOKOWAKK JAMET BEUT SIAL"}
                 </p>
 
-                <p className="absolute bottom-4 left-6 text-xs text-[#642CA9]/60 ">— from myself</p>
+                <p className="absolute bottom-4 left-6 text-xs text-[#642CA9]/60">— from myself</p>
               </div>
 
               {/* INPUT AREA */}
