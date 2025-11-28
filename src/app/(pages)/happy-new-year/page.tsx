@@ -55,10 +55,13 @@ const BirthdayPage = () => {
   return (
     <BirthdayAuthGate>
       <div className="h-screen w-screen bg-[#FFDDE1] flex flex-row relative overflow-hidden">
-        <div className="absolute top-4 left-4 z-50">
+        <div className="absolute top-4 left-4 z-50 flex flex-row items-center space-x-4">
           <a href="/home">
             <img src="logo.svg" alt="Logo" className="w-8 h-8 object-contain drop-shadow-lg" />
           </a>
+          <button className="py-2 px-2 bg-[#7232c0] hover:bg-[#642CA9] transition-all duration-200 active:scale-90 rounded-lg">
+            Berisik
+          </button>
         </div>
 
         <div className="banner-container">

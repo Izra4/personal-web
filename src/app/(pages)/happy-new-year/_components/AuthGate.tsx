@@ -46,7 +46,7 @@ export default function BirthdayAuthGate({ children }: { children: React.ReactNo
         });
       }, 1000);
     } else {
-      setError("Tanggal salah. Coba lagi yaa 😔");
+      setError("sp luh kok salah tanggal...");
     }
   };
 
@@ -63,6 +63,7 @@ export default function BirthdayAuthGate({ children }: { children: React.ReactNo
       >
         <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center gap-4">
           <h1 className="text-2xl font-semibold text-[#642CA9]">Beneran lu ga ni?</h1>
+          <p className="text-[#642CA9]">Coba tanggal ultah lu masukin sini</p>
 
           <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3">
             <input
