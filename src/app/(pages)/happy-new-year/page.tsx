@@ -2,9 +2,8 @@
 
 import BirthdayAuthGate from "./_components/AuthGate";
 import html2canvas from "html2canvas";
-import { useRef } from "react";
 import { Lexend } from "next/font/google";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useMusic } from "./_components/music-context";
 
 const lexend = Lexend({
@@ -51,6 +50,22 @@ const BirthdayPage = () => {
   const [wishText, setWishText] = useState("");
   const [addressInput, setAddressInput] = useState(false);
   const [address, setAddress] = useState("");
+  const [addressStatus, setAddressStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
+  const [addressError, setAddressError] = useState("");
+
+  const openAddressModal = () => {
+    setAddressStatus("idle");
+    setAddressError("");
+    setAddressInput(true);
+  };
+
+  const closeAddressModal = () => {
+    setAddressStatus("idle");
+    setAddressError("");
+    setAddressInput(false);
+  };
 
   const downloadCard = async () => {
     if (!cardRef.current) return;
@@ -74,6 +89,39 @@ const BirthdayPage = () => {
     requestAnimationFrame(() => {
       el.classList.remove("reset");
     });
+  };
+
+  const submitAddress = async () => {
+    const trimmedAddress = address.trim();
+    if (!trimmedAddress) {
+      setAddressStatus("error");
+      setAddressError("Please enter an address before sending.");
+      return;
+    }
+
+    setAddressStatus("loading");
+    setAddressError("");
+
+    try {
+      const response = await fetch("/api/address", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ address: trimmedAddress }),
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message || "Failed to send address.");
+      }
+
+      setAddressStatus("success");
+      setAddress("");
+    } catch (error) {
+      setAddressStatus("error");
+      setAddressError(error instanceof Error ? error.message : "Failed to send address.");
+    }
   };
 
   return (
@@ -179,7 +227,7 @@ const BirthdayPage = () => {
               Make a Wish ✨
             </button>
             <button
-              onClick={() => setAddressInput(true)}
+              onClick={openAddressModal}
               className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
             >
               Send me a Gift!
@@ -315,7 +363,7 @@ const BirthdayPage = () => {
         {addressInput && (
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
-            onClick={() => setWishOpen(false)}
+            onClick={closeAddressModal}
           >
             <div
               className="bg-white rounded-2xl shadow-2xl p-6 relative animate-scaleIn"
@@ -323,7 +371,7 @@ const BirthdayPage = () => {
             >
               <button
                 className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
-                onClick={() => setAddressInput(false)}
+                onClick={closeAddressModal}
               >
                 ×
               </button>
@@ -338,10 +386,22 @@ const BirthdayPage = () => {
               />
 
               <p className="text-xs text-red-500">Make sure jangan salah anjir</p>
-              <div className="mt-2 w-full flex justify-center items-center">
-                <button className="flex-1 bg-[#642CA9] text-white py-2 rounded-lg shadow-md hover:bg-[#53228a] transition active:scale-95">
-                  Send
+              <div className="mt-2 w-full flex flex-col justify-center items-center space-y-2">
+                <button
+                  onClick={submitAddress}
+                  disabled={addressStatus === "loading"}
+                  className="flex-1 bg-[#642CA9] px-12 text-white py-2 rounded-lg shadow-md hover:bg-[#53228a] transition active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {addressStatus === "loading" ? "Sending..." : "Send"}
                 </button>
+                {addressStatus === "success" && (
+                  <p className="text-green-600 text-sm">
+                    Address sent! Thank you 🎁, your present will arrive within a week.
+                  </p>
+                )}
+                {addressStatus === "error" && addressError && (
+                  <p className="text-red-500 text-sm">{addressError}</p>
+                )}
               </div>
             </div>
           </div>

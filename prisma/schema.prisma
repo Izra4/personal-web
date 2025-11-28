@@ -26,3 +26,11 @@ model Shortener {
   @@map("shorteners")
   @@index([shortURL], map: "short_url")
 }
+
+model AddressSubmission {
+  id        String   @id @default(uuid())
+  address   String   @db.Text()
+  createdAt DateTime @default(now())
+
+  @@map("addresses")
+}
