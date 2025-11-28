@@ -16,12 +16,22 @@
 
 @keyframes scrollLoop {
   0% {
-    transform: translateY(0);
-  }
-  100% {
     transform: translateY(-50%);
   }
+  100% {
+    transform: translateY(0);
+  }
 }
+
+@keyframes mobileScrollLoop {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 
 /* FLOAT UTAMA – naik + fade */
 @keyframes balloonFloat {
@@ -188,72 +198,4 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.mdx-content {
-  color: #292929;
-  line-height: 1.8;
-}
-
-.mdx-content h1,
-.mdx-content h2,
-.mdx-content h3 {
-  font-weight: 700;
-  margin-top: 1.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.mdx-content p {
-  margin: 1rem 0;
-}
-
-.mdx-content a {
-  color: #6d1e1e;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-color: rgba(109, 30, 30, 0.5);
-}
-
-.mdx-content ul,
-.mdx-content ol {
-  margin: 0.5rem 0 1.25rem 1.5rem;
-  padding-left: 0.75rem;
-  list-style-position: outside;
-}
-
-.mdx-content li {
-  margin: 0.35rem 0;
-}
-
-.mdx-content code {
-  background: #f7f3ef;
-  padding: 0.15rem 0.4rem;
-  border-radius: 0.4rem;
-  font-size: 0.95em;
-  border: 1px solid rgba(41, 41, 41, 0.08);
-}
-
-.mdx-content pre {
-  background: #0f172a;
-  color: #e2e8f0;
-  padding: 1.25rem;
-  border-radius: 1rem;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  border: 1px solid rgba(41, 41, 41, 0.12);
-}
-
-.mdx-content pre code {
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: inherit;
-}
-
-.mdx-content blockquote {
-  border-left: 4px solid #6d1e1e;
-  padding-left: 1rem;
-  margin: 1.25rem 0;
-  background: #f7f0ed;
-  color: #444;
 }

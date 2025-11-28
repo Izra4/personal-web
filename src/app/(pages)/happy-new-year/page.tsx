@@ -126,8 +126,8 @@ const BirthdayPage = () => {
 
   return (
     <BirthdayAuthGate>
-      <div className="h-screen w-screen bg-[#FFDDE1] flex flex-row relative overflow-hidden">
-        <div className="absolute top-4 left-4 z-50 flex flex-row items-center space-x-4">
+      <div className="h-screen w-screen bg-[#FFDDE1] flex flex-col md:flex-row relative overflow-hidden">
+        <div className="mt-12 md:mt-0 absolute top-4 left-4 z-50 flex flex-row items-center space-x-4">
           <a href="/home">
             <img src="logo.svg" alt="Logo" className="w-8 h-8 object-contain drop-shadow-lg" />
           </a>
@@ -212,14 +212,14 @@ const BirthdayPage = () => {
 
         <title>Happy Birthday, Keyla!</title>
 
-        <div className="w-3/4 h-full flex justify-start items-center">
-          <div className="w-3/4 bg-gray-50 p-8 rounded-r-3xl shadow-xl">
+        <div className="w-full mt-32 md:mt-0 md:w-3/4 h-full flex flex-col md:flex-row justify-start items-center">
+          <div className="w-full px-2 md:px-0 md:w-3/4 bg-gray-50 p-8 rounded-lg md:rounded-r-3xl shadow-xl">
             <h1 className={`${lexend.className} text-[#642CA9] text-5xl font-semibold ml-12`}>
               Happy 18th Birthday, <br />
               Keyla Azzelia Putri! <span className="text-lg">a.k.a JAMET</span>
             </h1>
           </div>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-row md:flex-col mt-4 md:mt-0 md:space-y-4">
             <button
               onClick={() => setWishOpen(true)}
               className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
@@ -235,9 +235,31 @@ const BirthdayPage = () => {
           </div>
         </div>
 
-        <div className="w-1/4 h-full bg-black flex flex-row">
-          <div className="w-4/5 h-full bg-white overflow-hidden relative z-10">
-            <div className="flex flex-col animate-[scrollLoop_12s_linear_infinite]">
+        <div className="w-full mt-4 md:mt-0 md:w-1/4 h-full bg-black flex flex-col md:flex-row">
+          <div className="w-full md:w-4/5 h-full bg-white overflow-hidden relative z-10">
+            {/* Mobile: horizontal scroll */}
+            <div className="flex md:hidden">
+              <div className="flex space-x-6 p-6 animate-[mobileScrollLoop_20s_linear_infinite]">
+                {/* First set */}
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p1.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p2.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p3.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p4.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p5.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p6.jpeg')] flex-shrink-0"></div>
+
+                {/* Second set - exact duplicate */}
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p1.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p2.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p3.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p4.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p5.jpeg')] flex-shrink-0"></div>
+                <div className="min-w-[280px] h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p6.jpeg')] flex-shrink-0"></div>
+              </div>
+            </div>
+
+            {/* Desktop: vertical scroll (existing) */}
+            <div className="hidden md:flex flex-col animate-[scrollLoop_12s_linear_infinite]">
               <div className="space-y-6 p-6">
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p1.jpeg')]"></div>
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p2.jpeg')]"></div>
