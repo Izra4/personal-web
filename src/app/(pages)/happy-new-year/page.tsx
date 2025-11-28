@@ -4,6 +4,7 @@ import BirthdayAuthGate from "./_components/AuthGate";
 
 import { Lexend } from "next/font/google";
 import { useState } from "react";
+import { useMusic } from "./_components/music-context";
 
 const lexend = Lexend({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -43,6 +44,8 @@ const generateBalloons = (count: number) => {
 
 const BirthdayPage = () => {
   const [balloons] = useState(() => generateBalloons(15));
+  const { toggleMusic, playing } = useMusic();
+  const [wishOpen, setWishOpen] = useState(false);
 
   const restartAnimation = (e: React.AnimationEvent<HTMLDivElement>) => {
     const el = e.currentTarget;
@@ -59,8 +62,11 @@ const BirthdayPage = () => {
           <a href="/home">
             <img src="logo.svg" alt="Logo" className="w-8 h-8 object-contain drop-shadow-lg" />
           </a>
-          <button className="py-2 px-2 bg-[#7232c0] hover:bg-[#642CA9] transition-all duration-200 active:scale-90 rounded-lg">
-            Berisik
+          <button
+            onClick={toggleMusic}
+            className="py-2 px-2 bg-[#7232c0] hover:bg-[#642CA9] transition-all duration-200 active:scale-90 rounded-lg text-white"
+          >
+            {playing ? "Berisik ah, matiin" : "Pengen berisik"}
           </button>
         </div>
 
@@ -144,6 +150,12 @@ const BirthdayPage = () => {
               Keyla Azzelia Putri! <span className="text-lg">a.k.a JAMET</span>
             </h1>
           </div>
+          <button
+            onClick={() => setWishOpen(true)}
+            className="ml-4 px-4 py-2 bg-[#642CA9] text-white rounded-lg shadow-md hover:bg-[#57228c] transition active:scale-95"
+          >
+            Make a Wish ✨
+          </button>
         </div>
 
         <div className="w-1/4 h-full bg-black flex flex-row">
@@ -202,6 +214,47 @@ const BirthdayPage = () => {
             />
           </svg>
         </div>
+        {wishOpen && (
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999] animate-fadeIn"
+            onClick={() => setWishOpen(false)} // klik luar = close
+          >
+            {/* Card */}
+            <div
+              className="bg-white w-[450px] rounded-2xl shadow-2xl p-6 relative animate-scaleIn"
+              onClick={(e) => e.stopPropagation()} // biar klik card ga nutup
+            >
+              {/* Close button */}
+              <button
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
+                onClick={() => setWishOpen(false)}
+              >
+                ×
+              </button>
+
+              <h2 className={`${lexend.className} text-2xl font-semibold text-[#642CA9] mb-4`}>
+                Make your wish 💫
+              </h2>
+
+              <p className="text-sm text-gray-600 mb-4">
+                anything. For yourself, your family, your future, or.. <br />
+                <span className="italic font-semibold text-[#642CA9]">for us? AWKAWK</span>
+              </p>
+
+              <textarea
+                className="w-full h-32 p-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-[#642CA9] outline-none"
+                placeholder="Write your wish here..."
+              ></textarea>
+
+              <button
+                className="w-full mt-4 bg-[#642CA9] text-white py-2 rounded-lg shadow-md hover:bg-[#51208b] transition active:scale-95"
+                onClick={() => setWishOpen(false)}
+              >
+                Send Wish 🎉
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </BirthdayAuthGate>
   );

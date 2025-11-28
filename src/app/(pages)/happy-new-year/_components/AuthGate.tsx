@@ -2,6 +2,7 @@
 
 import { Lexend } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
+import { useMusic } from "./music-context";
 
 // <input type="date" /> selalu output yyyy-mm-dd
 const CORRECT_BIRTHDAY = "2007-11-29";
@@ -32,6 +33,7 @@ export default function BirthdayAuthGate({ children }: { children: React.ReactNo
     audio.load();
   }, []);
 
+  const { playMusic } = useMusic();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -39,12 +41,7 @@ export default function BirthdayAuthGate({ children }: { children: React.ReactNo
       setAuthorized(true);
       setError("");
 
-      // 🎧 DELAY 1 detik biar ga kaget
-      setTimeout(() => {
-        audioRef.current?.play().catch(() => {
-          console.log("Autoplay blocked but will play after next user interaction");
-        });
-      }, 1000);
+      setTimeout(() => playMusic(), 1000);
     } else {
       setError("sp luh kok salah tanggal...");
     }
