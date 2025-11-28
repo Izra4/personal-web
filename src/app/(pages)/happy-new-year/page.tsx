@@ -218,7 +218,7 @@ const BirthdayPage = () => {
           <div className="w-full px-2 md:px-0 md:w-3/4 bg-gray-50 p-8 rounded-lg md:rounded-r-3xl shadow-xl">
             <h1 className={`${lexend.className} text-[#642CA9] text-5xl font-semibold ml-12`}>
               Happy 18th Birthday, <br />
-              Keyla Azzelia Putri! <span className="text-lg">a.k.a JAMET</span>
+              Keyla Azzelia Putri! <span className="text-lg">a.k.a Keya</span>
             </h1>
           </div>
           <div className="flex flex-row md:flex-col mt-4 md:mt-0 md:space-y-4">
@@ -286,7 +286,7 @@ const BirthdayPage = () => {
             <p
               className={`${lexend.className} text-[#642CA9] text-2xl font-bold md:[writing-mode:vertical-rl] bg-gray-50 py-4 px-2 rounded-lg shadow-lg`}
             >
-              Si Jamet Ulang Tahun
+              Si Cantik Ulang Tahun
             </p>
           </div>
         </div>
