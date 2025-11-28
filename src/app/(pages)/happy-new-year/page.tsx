@@ -243,6 +243,8 @@ const BirthdayPage = () => {
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p2.jpeg')]"></div>
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p3.jpeg')]"></div>
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p4.jpeg')]"></div>
+                <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p5.jpeg')]"></div>
+                <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p6.jpeg')]"></div>
               </div>
 
               <div className="space-y-6 p-6">
@@ -250,6 +252,8 @@ const BirthdayPage = () => {
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p2.jpeg')]"></div>
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p3.jpeg')]"></div>
                 <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p4.jpeg')]"></div>
+                <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p5.jpeg')]"></div>
+                <div className="w-full h-64 rounded-lg bg-cover bg-center bg-no-repeat bg-[url('/hbd/p6.jpeg')]"></div>
               </div>
             </div>
           </div>
